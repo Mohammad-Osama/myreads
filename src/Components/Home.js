@@ -30,9 +30,10 @@ class Home extends Component  {
             </div>
             <div className="list-books-content">
               <div>
-                <Shelf title = 'Currently Reading'> </Shelf>
-                <Shelf title = 'Want To Read'> </Shelf>
-                <Shelf title = 'Read'> </Shelf>
+                <Shelf title = 'Currently Reading' onShelf = {this.state.books.filter((x)=>x.shelf==="currentlyReading")}> </Shelf>
+                <Shelf title = 'Want To Read' onShelf = {this.state.books.filter((x)=>x.shelf==="wantToRead")}> </Shelf>
+                <Shelf title = 'Read' onShelf = {this.state.books.filter((x)=>x.shelf==="read")}> </Shelf>
+                
                 
                 
               </div>
