@@ -5,12 +5,23 @@ import * as BooksAPI from '../BooksAPI'
 
 
 class Home extends Component  {
-  async componentDidMount(){
-      const allBooks= await BooksAPI.getAll()
-      console.log(allBooks)
-
-
+  state = {
+    books :[]
   }
+
+  async getbooks (){
+    const allBooks= await BooksAPI.getAll()
+    console.log(allBooks)
+    this.setState({books : allBooks})
+    console.log( "state" ,  this.state)
+    }
+   componentDidMount(){
+    this.getbooks()
+    
+}
+
+
+ 
     render() {
         return(
             <div className="list-books">
