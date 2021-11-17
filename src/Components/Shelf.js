@@ -9,9 +9,8 @@ export default class Shelf extends Component {
                   <h2 className="bookshelf-title">{this.props.title}</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
-                      <Book></Book>
-                      <Book></Book>
-                      <Book></Book>
+                      {this.props.onShelf.map((x)=><Book  {...x} key={x.id} id={x.id}   />)}
+                      
                       
                     </ol>
                   </div>
