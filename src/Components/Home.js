@@ -6,9 +6,10 @@ import * as BooksAPI from '../BooksAPI'
 
 class Home extends Component  {
   state = {
-    books :[]
+    books :[] , 
+    moveBook: this.moveBook
   }
-
+  
   async getbooks (){
     const allBooks= await BooksAPI.getAll()
     console.log(allBooks)
@@ -16,9 +17,19 @@ class Home extends Component  {
     console.log( "state" ,  this.state)
     }
    componentDidMount(){
-    this.getbooks()
-    
-}
+    this.getbooks()    
+                }
+
+              moveBook =  async (book, shelf) => {
+                await  BooksAPI.update(book, shelf).then(updated => {
+                        console.log('updated ' , updated);
+                         this.setState(x => ({
+                          books: {                   // object that we want to update
+                              ...x.books,    // keep all other key-value pairs
+                              id: updated       // update the value of specific key
+                          }
+                      }))
+                  });}
 
 
  
@@ -30,9 +41,9 @@ class Home extends Component  {
             </div>
             <div className="list-books-content">
               <div>
-                <Shelf title = 'Currently Reading' onShelf = {this.state.books.filter((x)=>x.shelf==="currentlyReading")}> </Shelf>
-                <Shelf title = 'Want To Read' onShelf = {this.state.books.filter((x)=>x.shelf==="wantToRead")}> </Shelf>
-                <Shelf title = 'Read' onShelf = {this.state.books.filter((x)=>x.shelf==="read")}> </Shelf>
+                <Shelf title = 'Currently Reading' onShelf = {this.state.books.filter((x)=>x.shelf==="currentlyReading")} moveBook={this.state.moveBook}>  </Shelf>
+                <Shelf title = 'Want To Read' onShelf = {this.state.books.filter((x)=>x.shelf==="wantToRead")}  moveBook={this.state.moveBook}> </Shelf>
+                <Shelf title = 'Read' onShelf = {this.state.books.filter((x)=>x.shelf==="read")}  moveBook={this.state.moveBook}> </Shelf>
                 
                 
                 
