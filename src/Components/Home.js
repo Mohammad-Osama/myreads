@@ -25,7 +25,7 @@ class Home extends Component  {
                         console.log('updated ' , updated);
                         
                          this.setState(()=>(
-                           {books : this.state.books.filter((x)=>x.id===updated.id)}
+                           {books : this.state.books.filter((x)=>x.id===book.id).concat(book)}
                            
                            ))
                   });}
@@ -40,9 +40,9 @@ class Home extends Component  {
             </div>
             <div className="list-books-content">
               <div>
-                <Shelf title = 'Currently Reading' onShelf = {this.state.books.filter((x)=>x.shelf==="currentlyReading")} moveBook={this.state.moveBook}>  </Shelf>
-                <Shelf title = 'Want To Read' onShelf = {this.state.books.filter((x)=>x.shelf==="wantToRead")}  moveBook={this.state.moveBook}> </Shelf>
-                <Shelf title = 'Read' onShelf = {this.state.books.filter((x)=>x.shelf==="read")}  moveBook={this.state.moveBook}> </Shelf>
+                <Shelf title = 'Currently Reading' onShelf = {this.state.books.filter((x)=>x.shelf==="currentlyReading")} moveBook={this.moveBook}>  </Shelf>
+                <Shelf title = 'Want To Read' onShelf = {this.state.books.filter((x)=>x.shelf==="wantToRead")}  moveBook={this.moveBook}> </Shelf>
+                <Shelf title = 'Read' onShelf = {this.state.books.filter((x)=>x.shelf==="read")}  moveBook={this.moveBook}> </Shelf>
                 
                 
                 
