@@ -23,9 +23,10 @@ class Home extends Component  {
               moveBook =  async (book, shelf) => {
                 await  BooksAPI.update(book, shelf).then(updated => {
                         console.log('updated ' , updated);
-                        
+
+                         book.shelf = shelf 
                          this.setState(()=>(
-                           {books : this.state.books.filter((x)=>x.id===book.id).concat(book)}
+                           {books : this.state.books.filter((x)=>x.id!==book.id).concat([book])}
                            
                            ))
                   });}
