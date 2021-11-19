@@ -40,7 +40,7 @@ class Home extends Component  {
               <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
-              <div>
+              <div>currentlyReading
                 <Shelf title = 'Currently Reading' onShelf = {this.state.books.filter((x)=>x.shelf==="currentlyReading")} moveBook={this.moveBook}>  </Shelf>
                 <Shelf title = 'Want To Read' onShelf = {this.state.books.filter((x)=>x.shelf==="wantToRead")}  moveBook={this.moveBook}> </Shelf>
                 <Shelf title = 'Read' onShelf = {this.state.books.filter((x)=>x.shelf==="read")}  moveBook={this.moveBook}> </Shelf>
