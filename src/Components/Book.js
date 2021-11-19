@@ -10,7 +10,7 @@ export default class Book extends Component {
               }
 
               change = (event) => {
-                this.props.moveBook(this.state.book, event.target.value)
+                this.props.moveBook(this.props.book, event.target.value)
             }
 
               

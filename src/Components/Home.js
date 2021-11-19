@@ -7,7 +7,7 @@ import * as BooksAPI from '../BooksAPI'
 class Home extends Component  {
   state = {
     books :[] , 
-    moveBook: this.moveBook
+    
   }
   
   async getbooks (){
@@ -23,12 +23,11 @@ class Home extends Component  {
               moveBook =  async (book, shelf) => {
                 await  BooksAPI.update(book, shelf).then(updated => {
                         console.log('updated ' , updated);
-                         this.setState(x => ({
-                          books: {                   // object that we want to update
-                              ...x.books,    // keep all other key-value pairs
-                              id: updated       // update the value of specific key
-                          }
-                      }))
+                        
+                         this.setState(()=>(
+                           {books : this.state.books.filter((x)=>x.id===updated.id)}
+                           
+                           ))
                   });}
 
 
