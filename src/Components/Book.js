@@ -25,7 +25,10 @@ export default class Book extends Component {
             <li>
               <div className="book">
                 <div className="book-top">
-                  <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url(${this.props.book.imageLinks.thumbnail})` }}></div>
+                  <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url(${  /*handeling if the book has no image ( my first life book)  */
+                                                                                                        this.props.book.imageLinks          
+                                                                                                        ? this.props.book.imageLinks.thumbnail
+                                                                                                        : ''         })` }}></div>
                   <div className="book-shelf-changer">
                       <select onChange = { this.change} >
                         <option value="move" disabled>Move to...</option>
