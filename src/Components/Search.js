@@ -1,6 +1,7 @@
 import React , {Component} from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from '../BooksAPI' 
+import Book from './Book'
 
 
 class Search extends Component  {
@@ -17,11 +18,18 @@ class Search extends Component  {
 
 
       updateQuery = async (query)=>{
-        this.setState(()=>({
-            query : query.trim()
-          }))
-          const searchedBooks = await BooksAPI.search(query)
+        this.setState({ query : query.trim()} )
+          const searchedBooks = await BooksAPI.search(this.state.query)
           console.log (searchedBooks)
+
+          if (searchedBooks.error){
+                this.setState({books : [] }) 
+                          }
+            else {
+              this.setState({books : searchedBooks})
+                  }
+          
+        
         }
 
 
@@ -41,7 +49,7 @@ class Search extends Component  {
 
     render() {
 
-      console.log("search state ", this .state.books)
+      console.log("search state ", this.state.books)
 
         return(       
             <div className="search-books">
@@ -65,7 +73,13 @@ class Search extends Component  {
               </div>
             </div>
             <div className="search-books-results">
-              <ol className="books-grid"></ol>
+              <ol className="books-grid">
+              {this.state.books.map((x)=><Book  moveBook = {this.props.moveBook} book={x} key={x.id} id={x.id}   />)}
+
+
+
+
+              </ol>
             </div>
           </div>  
 
