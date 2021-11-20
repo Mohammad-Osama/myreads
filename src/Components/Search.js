@@ -14,7 +14,7 @@ class Search extends Component  {
     
   }
   
-
+  // getting all books stored in the api once the app loads 
   async getbooks (){
     const allBooks= await BooksAPI.getAll()
     console.log(allBooks)
@@ -40,16 +40,23 @@ class Search extends Component  {
 
       updateQuery = async (query)=>{
         this.setState({ query : query.trim()} )
-          const searchedBooks = await BooksAPI.search(this.state.query)
+
+        
+        if (query === "" ||  query === undefined) {    // ignore query incase of an error 
+             this.setState({ searchBook: [] }); }
+             else {
+                 const searchedBooks = await BooksAPI.search(this.state.query)
           
 
-          if (searchedBooks.error){
-                this.setState({searchBook : [] }) 
-                          }
-            else {
-              this.setState({searchBook : searchedBooks})
-              console.log (this.state)
-                  }
+                      if (searchedBooks.error){    // no books in the searchbooks state incase of an error 
+                        this.setState({searchBook : [] }) 
+                                  }
+                        else {
+                       this.setState({searchBook : searchedBooks})
+                       console.log (this.state)
+                          }     }
+        
+          
           
         
         }
@@ -84,7 +91,7 @@ class Search extends Component  {
                
                 <input type="text" 
                        placeholder="Search by title or author"
-                       value = {this.state.query}
+                      
                        onChange = {(x)=>this.updateQuery(x.target.value)}
                        
                        
@@ -96,10 +103,11 @@ class Search extends Component  {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-              {
-                this.state.searchBook.length > 0 &&
+              {    /* rendering the results , show a message when no results */
+                this.state.searchBook.length > 0 
               
-              this.state.searchBook.map((x)=> <Book  moveBook = {this.moveBook} book={x} key={x.id} id={x.id}   />)
+               ? this.state.searchBook.map((x)=> <Book  moveBook = {this.moveBook} book={x} key={x.id} id={x.id}   />)
+               : <p> no books found </p>
             }
               
               

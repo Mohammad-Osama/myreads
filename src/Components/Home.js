@@ -9,7 +9,7 @@ class Home extends Component  {
     books :[] , 
     
   }
-  
+  // getting all books stored in the api once the app loads 
   async getbooks (){
     const allBooks= await BooksAPI.getAll()
     console.log(allBooks)
