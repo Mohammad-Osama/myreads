@@ -13,6 +13,27 @@ class Search extends Component  {
     query : ' '
     
   }
+  
+
+  async getbooks (){
+    const allBooks= await BooksAPI.getAll()
+    console.log(allBooks)
+    this.setState({books : allBooks})
+    }
+   componentDidMount(){
+    this.getbooks()    
+                }
+
+              moveBook =  async (book, shelf) => {
+                await  BooksAPI.update(book, shelf).then(updated => {
+                        
+
+                         book.shelf = shelf 
+                         this.setState(()=>(
+                           {books : this.state.books.filter((x)=>x.id!==book.id).concat([book])}
+                           
+                           ))
+                  });}
 
   
 
@@ -20,13 +41,14 @@ class Search extends Component  {
       updateQuery = async (query)=>{
         this.setState({ query : query.trim()} )
           const searchedBooks = await BooksAPI.search(this.state.query)
-          console.log (searchedBooks)
+          
 
           if (searchedBooks.error){
-                this.setState({books : [] }) 
+                this.setState({searchBook : [] }) 
                           }
             else {
-              this.setState({books : searchedBooks})
+              this.setState({searchBook : searchedBooks})
+              console.log (this.state)
                   }
           
         
@@ -49,7 +71,7 @@ class Search extends Component  {
 
     render() {
 
-      console.log("search state ", this.state.books)
+      
 
         return(       
             <div className="search-books">
@@ -75,9 +97,9 @@ class Search extends Component  {
             <div className="search-books-results">
               <ol className="books-grid">
               {
-                this.state.books.length > 0 &&
+                this.state.searchBook.length > 0 &&
               
-              this.state.books.map((x)=> <Book  moveBook = {this.props.moveBook} book={x} key={x.id} id={x.id}   />)
+              this.state.searchBook.map((x)=> <Book  moveBook = {this.moveBook} book={x} key={x.id} id={x.id}   />)
             }
               
               
