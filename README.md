@@ -1,17 +1,30 @@
 # MyReads Project
 
-This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
+## Table of Contents
+* [Project-description](#Project-description)  
+* [Getting-started](#Getting-started)
+* [What-You're-Getting](#What-You're-Getting)
+* [Backend-Server](#Backend-Server)
+* [Important](#Important)
+* [Create-React-App](#Create-React-App)
+* [Dependencies](#Dependencies)
+* [Refernces-used](#Refernces-used)
+* [TL;DR](#TL;DR)
 
-Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
 
-## TL;DR
+## Project-description
+creating a books app by adding code to an existing react code .
+the user should have his books sorted by its shelves , books can be moved between shelves.
+the user can search for books and add them to the shelves they want.
 
-To get started developing right away:
 
-* install all project dependencies with `npm install`
-* start the development server with `npm start`
+## Getting-started
 
-## What You're Getting
+node js is needed to run this project  , after having that installed ; clone the project from here https://github.com/Mohammad-Osama/reactnd-project-myreads-starter  
+in the folder the project was cloned at , open the terminal and type : npm install , this will install all dependacies for the project
+once thats done , open the terminal and type : npm start  ; and you will see the project displayed on your browser .
+
+## What-You're-Getting
 ```bash
 ├── CONTRIBUTING.md
 ├── README.md - This file.
@@ -31,11 +44,14 @@ To get started developing right away:
     │   └── arrow-drop-down.svg
     ├── index.css # Global styles. You probably won't need to change anything here.
     └── index.js # You should not need to modify this file. It is used for DOM rendering only.
+    └── Components   # Contains all the components   
+           ├── Home.js # Parent component,contains code to render the home page.
+           └── Shelf.js # Child component of home,contains code to render a shelf.
+           └── Book.js # Child component of shelf,contains code to render a book.
+           └── Search.js # Contains code to render the search page.         
 ```
 
-Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
-
-## Backend Server
+## Backend-Server
 
 To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
 
@@ -81,12 +97,39 @@ search(query)
 ## Important
 The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
 
-## Create React App
+## Create-React-App
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
-## Contributing
+## Dependencies
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+    react: 17.0.2
+    react-dom: 17.0.2
+    react-router-dom: 6.0.2
+    react-scripts:4.0.3
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Refernces-used
+
+https://reactjs.org/docs/state-and-lifecycle.html
+
+https://reactjs.org/warnings/special-props.html
+
+https://forum.freecodecamp.org/t/how-to-export-a-function-from-within-a-component-class/254816/2
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat
+
+
+https://reactjs.org/docs/conditional-rendering.html
+
+
+
+## TL;DR
+
+To get started developing right away:
+
+* install all project dependencies with `npm install` 
+* start the development server with `npm start`
+
+
+
