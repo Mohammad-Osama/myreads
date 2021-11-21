@@ -16,70 +16,39 @@ class Search extends Component  {
   
   // getting all books stored in the api once the app loads 
   async getbooks (){
-    const allBooks= await BooksAPI.getAll()
-    console.log(allBooks)
-    this.setState({books : allBooks})
-    }
-   componentDidMount(){
-    this.getbooks()    
-                }
+      const allBooks= await BooksAPI.getAll()
+      console.log(allBooks)
+      this.setState({books : allBooks})
+                    }
+      componentDidMount(){
+           this.getbooks() }
 
-              moveBook =  async (book, shelf) => {
-                await  BooksAPI.update(book, shelf).then(updated => {
-                        
-
-                         book.shelf = shelf 
-                         this.setState(()=>(
-                           {books : this.state.books.filter((x)=>x.id!==book.id).concat([book])}
-                           
-                           ))
-                  });}
-
-  
+  moveBook =  async (book, shelf) => {
+    await  BooksAPI.update(book, shelf).then(updated => {
+      book.shelf = shelf 
+      this.setState(()=>(
+        {books : this.state.books.filter((x)=>x.id!==book.id).concat([book])}            
+                ))
+      });}
 
 
-      updateQuery = async (query)=>{
-        this.setState({ query : query.trim()} )
+  updateQuery = async (query)=>{
+    this.setState({ query : query.trim() })
 
-        
-        if (query === "" ||  query === undefined) {    // ignore query incase of an error 
-             this.setState({ searchBook: [] }); }
-             else {
-                 const searchedBooks = await BooksAPI.search(this.state.query)
-          
-
-                      if (searchedBooks.error){    // no books in the searchbooks state incase of an error 
-                        this.setState({searchBook : [] }) 
-                                  }
-                        else {
-                       this.setState({searchBook : searchedBooks})
-                       console.log (this.state)
-                          }     }
-        
-          
-          
-        
-        }
-
-
-             
-
-
-
-
-
-
-
-
-
-
-
-
+    
+    if (query === "" ||  query === undefined) { // ignore query incase of an error 
+          this.setState({ searchBook: [] }); }
+          else {
+            const searchedBooks = await BooksAPI.search(this.state.query)         
+                                
+                
+                this.setState({searchBook : searchedBooks})
+                console.log (this.state)
+                      
+                }    
+  }
 
     render() {
-
-      
-
         return(       
             <div className="search-books">
             <div className="search-books-bar">
@@ -93,11 +62,7 @@ class Search extends Component  {
                        placeholder="Search by title or author"
                       
                        onChange = {(x)=>this.updateQuery(x.target.value)}
-                       
-                       
-                       
-                       
-                       />
+                      />
                     
               </div>
             </div>
@@ -108,27 +73,10 @@ class Search extends Component  {
               
                ? this.state.searchBook.map((x)=> <Book  moveBook = {this.moveBook} book={x} key={x.id} id={x.id}   />)
                : <p> no books found </p>
-            }
-              
-              
-
-
-
-
+                }             
               </ol>
             </div>
-          </div>  
-
-
-
-
-
-
-
-
-
-
-
+          </div> 
         )}
 }
 
