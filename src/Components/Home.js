@@ -21,7 +21,7 @@ class Home extends Component  {
                 }
 
               moveBook =  async (book, shelf) => {
-                await  BooksAPI.update(book, shelf).then(updated => {
+                await  BooksAPI.update(book, shelf).then((updated) => {
                         console.log('updated ' , updated);
 
                          book.shelf = shelf 
