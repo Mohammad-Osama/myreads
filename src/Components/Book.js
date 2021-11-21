@@ -27,7 +27,7 @@ export default class Book extends Component {
                                                                                                         ? this.props.book.imageLinks.thumbnail
                                                                                                         : ''         })` }}></div>
                   <div className="book-shelf-changer">
-                      <select onChange = { this.change} >
+                      <select onChange = { this.change} value ={ this.props.book.shelf || "none" /*showing the current shelf on the dropdown menu */ }  >
                         <option value="move" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
